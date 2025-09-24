@@ -1,0 +1,19 @@
+{
+  "realm": "idp-realm",
+  "enabled": true,
+  "clients": [
+    {
+      "enabled": true,
+      "clientAuthenticatorType": "client-secret",
+      "clientId": "idp-client",
+      "secret": "idp-secret",
+      "protocol": "openid-connect",
+      "serviceAccountsEnabled": true,
+      "bearerOnly": false,
+      "publicClient": false,
+      "standardFlowEnabled": false,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": false
+    }
+  ]
+}

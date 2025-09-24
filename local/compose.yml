@@ -1,0 +1,31 @@
+version: "3.9"
+
+services:
+
+  idp:
+    build:
+      context: ./idp
+    container_name: idp
+    environment:
+      KC_HOSTNAME: idp # use service name as hostname
+      KC_BOOTSTRAP_ADMIN_USERNAME: admin
+      KC_BOOTSTRAP_ADMIN_PASSWORD: admin
+    ports:
+      - "8080:8080"
+    command:
+      - start-dev
+      - --import-realm
+      - --http-port=8080
+      - --hostname-strict=false
+
+  api:
+    build:
+      context: ./../
+    container_name: api
+    environment:
+      ISSUER_URI: http://idp:8080/realms/idp-realm
+      JWK_SET_URI: http://idp:8080/realms/idp-realm/protocol/openid-connect/certs
+    depends_on:
+      - idp
+    ports:
+      - "9090:9090"

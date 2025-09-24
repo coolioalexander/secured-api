@@ -1,0 +1,17 @@
+server:
+  port: 9090
+
+spring:
+  application.name: api
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${ISSUER_URI}
+          jwk-set-uri: ${JWK_SET_URI}
+
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG
